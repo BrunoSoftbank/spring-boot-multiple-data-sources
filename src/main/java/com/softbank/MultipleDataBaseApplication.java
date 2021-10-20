@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.softbank.consulta.service.ConsultaService;
 import com.softbank.consulta.service.LoginService;
 import com.softbank.exame.service.ExameService;
-import com.softbank.exame.service.TipoService;
 import com.softbank.laboratorio.service.EnderecoService;
 import com.softbank.laboratorio.service.LaboratorioService;
 import com.softbank.usuario.service.RoleService;
@@ -19,8 +18,6 @@ public class MultipleDataBaseApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ExameService exameService;
-	@Autowired
-	private TipoService tipoService;
 	@Autowired
 	private UsuarioService sportService;
 	@Autowired
@@ -41,15 +38,13 @@ public class MultipleDataBaseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Banco de dados EXAME via JPA");
+		System.out.println("Banco de dados MONGO DB via JPA");
 		System.out.println("Tabela Exame");
 		exameService.findAll().forEach(exame -> System.out.println(exame));
-		System.out.println("Tabela Tipo");
-		tipoService.findAll().forEach(tipo -> System.out.println(tipo));
 		
 		System.out.println("-------------------------------------");
 		
-		System.out.println("Banco de dados USUARIO via JPA");
+		System.out.println("Banco de dados My Sql via JPA");
 		System.out.println("Tabela Usuario");
 		sportService.findAll().forEach(usuario -> System.out.println(usuario));
 		System.out.println("Tabela Role");
@@ -57,7 +52,7 @@ public class MultipleDataBaseApplication implements CommandLineRunner {
 		
 		System.out.println("-------------------------------------");
 		
-		System.out.println("Banco de dados LABORATORIO via JDBC");
+		System.out.println("Banco de dados Postgresql via JPA");
 		System.out.println("Tabela Laboratorio");
 		laboratorioService.findAll().forEach(laboratorio -> System.out.println(laboratorio));
 		System.out.println("Tabela Endereco");
