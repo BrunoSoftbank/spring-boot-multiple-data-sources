@@ -5,7 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.softbank.consulta.service.ConsultaService;
 import com.softbank.consulta.service.LoginService;
 import com.softbank.exame.service.ExameService;
 import com.softbank.laboratorio.service.EnderecoService;
@@ -24,8 +23,6 @@ public class MultipleDataBaseApplication implements CommandLineRunner {
 	private RoleService roleService;
 	@Autowired
 	private LaboratorioService laboratorioService;
-	@Autowired
-	private ConsultaService consultaService;
 	@Autowired
 	private LoginService loginService;
 	@Autowired
@@ -60,9 +57,7 @@ public class MultipleDataBaseApplication implements CommandLineRunner {
 		
 		System.out.println("-------------------------------------");
 		
-		System.out.println("Banco de dados CONSULTA via JDBC");
-		System.out.println("Tabela Consulta");
-		consultaService.findAll().forEach(consulta -> System.out.println(consulta));
+		System.out.println("Banco de dados Sql Server via JDBC");
 		System.out.println("Tabela Login");
 		loginService.findAll().forEach(login -> System.out.println(login));
 	}

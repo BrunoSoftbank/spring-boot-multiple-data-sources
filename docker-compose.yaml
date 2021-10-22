@@ -1,0 +1,63 @@
+version: '3.5'
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - mysql:/var/lib/mysql
+    security_opt:
+      - seccomp:unconfined
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    networks:
+      - network
+    restart: unless-stopped
+
+  sqlServer:
+    image: mcr.microsoft.com/mssql/server
+    container_name: sqlServer
+    ports:
+      - "1433:1433"
+    environment:
+       SA_PASSWORD: sqlSever@RooTPassWord
+       ACCEPT_EULA: Y
+    networks:
+      - network
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo:/data/db
+    networks:
+      - network
+             
+
+networks:
+  network:
+
+volumes:
+  mysql:
+  postgres:
+  mongo:
